@@ -14,83 +14,83 @@ set rrotate(set,int);
 void leftShift(set);
 
 //Global variables
-int c,i,j,k; //Loop variables
-set firstdec; //First Hexidecimal argument
-set seconddec;//Second hexidecimal argument
-set result; //Result from operations
+int c,i,j,k; 	//Loop variables
+set firstdec; 	//First Hexidecimal argument
+set seconddec;	//Second hexidecimal argument
+set result; 	//Result from operations
 
 int main(int argc, char *argv[]){
-	if(argc < 2 ||argc > 4){//If command line has less than 2 or more than 3 arguments
-		perror("Not enough or too many args provided.\n");//Print an error
-		return(-1);//Return -1 instead of a positive number
+	if(argc < 2 ||argc > 4){								//If command line has less than 2 or more than 3 arguments
+		perror("Not enough or too many args provided.\n");	//Print an error
+		return(-1);											//Return -1 instead of a positive number
 	}
 	else if(argv[1][1] != 'p' && argv[1][1] != 'c' && argv[1][1] != 's' && argv[1][1] != 'u' && argv[1][1] != 'i' && argv[1][1] != 'r' && argv[1][1] != 'm'){ //If the first argument isnt a valid operation
 		perror("Invalid procedure from command line argument!\n"); //Print error
 		return(-1);
 	}
 	else{
-		char *proc = argv[1];//Put procedure into a char array
+		char *proc = argv[1];								//Put procedure into a char array
 		
-		if(argc == 3){//for -p,-c,-s, or -m operations
+		if(argc == 3){										//for -p,-c,-s, or -m operations
 			
-			if(argv[2][2] == 'x'){ //If the hexidecimal is a 0x hexidecimal number
-				firstdec = strtol(argv[2],NULL,0);//do a string to long in base 0
+			if(argv[2][2] == 'x'){ 							//If the hexidecimal is a 0x hexidecimal number
+				firstdec = strtol(argv[2],NULL,0);			//do a string to long in base 0
 			}
 			
-			else{//Otherwise if it isnt a 0x hexidecimal
-				firstdec = strtol(argv[2],NULL,16); //do a string to Long in base 16
+			else{											//Otherwise if it isnt a 0x hexidecimal
+				firstdec = strtol(argv[2],NULL,16); 		//do a string to Long in base 16
 			}
 			
-			if(proc[1] == 'p'){//If the operation is print
+			if(proc[1] == 'p'){								//If the operation is print
 				printf("Bits: ");
-				printBits(firstdec);//Call printBits function to print the bits
+				printBits(firstdec);						//Call printBits function to print the bits
 			}
 			
-			else if(proc[1] == 'c'){ //
+			else if(proc[1] == 'c'){
 				printf("Original   : ");
-				printBits(firstdec);//Print bits of the first hexidecimal
+				printBits(firstdec);						//Print bits of the first hexidecimal
 				printf("Compelement: ");
-				result = complement(firstdec);//Get complement bits of the first hexidecimal
-				printBits(result); //Print bits of the result
+				result = complement(firstdec);				//Get complement bits of the first hexidecimal
+				printBits(result); 							//Print bits of the result
 			}
-			else if(proc[1] == 's'){//If Find set Bits operation
-				int setbits = countBits(firstdec);//call countBits function to find how many set bits the number has
-				printf("%d bits set\n",setbits);//Print the number
-				printBits(firstdec);//Print the bits of the argument
+			else if(proc[1] == 's'){						//If Find set Bits operation
+				int setbits = countBits(firstdec);			//call countBits function to find how many set bits the number has
+				printf("%d bits set\n",setbits);			//Print the number
+				printBits(firstdec);						//Print the bits of the argument
 			}
-			else if(proc[1] == 'm'){//If left shift operation
+			else if(proc[1] == 'm'){						//If left shift operation
 				printf("Original set: ");
-				printBits(firstdec); //print bits of the argument
+				printBits(firstdec); 						//print bits of the argument
 				printf("Left Shifted: ");
-				leftShift(firstdec);//Call leftShift function to print the bits of the left shifted	
+				leftShift(firstdec);						//Call leftShift function to print the bits of the left shifted	
 			}
 		}
-		else if(argc == 4){//for -u, -i, or -r
-			if(argv[2][2] == 'x'){//If the hexidecimal is a 0x hexidecimal number
-				firstdec = strtol(argv[2],NULL,0); //do a string to long in base 0
+		else if(argc == 4){									//for -u, -i, or -r
+			if(argv[2][2] == 'x'){							//If the hexidecimal is a 0x hexidecimal number
+				firstdec = strtol(argv[2],NULL,0); 			//do a string to long in base 0
 			}
 			else{
-				firstdec = strtol(argv[2],NULL,16);//do a string to long in base 16
+				firstdec = strtol(argv[2],NULL,16);			//do a string to long in base 16
 			}
 			if(proc[1] != 'r'){
-				if(argv[3][2] == 'x'){//If the hexidecimal is a 0x hexidecimal number
-					seconddec = strtol(argv[3],NULL,0); //do a string to long in base 0
+				if(argv[3][2] == 'x'){						//If the hexidecimal is a 0x hexidecimal number
+					seconddec = strtol(argv[3],NULL,0); 	//do a string to long in base 0
 				}
-				else if(argv[3][2] != 'x'){ //If the hexidecimal isnt a 0x hexidecimal number
-					seconddec = strtol(argv[3],NULL,16);//do a string to long in base 16
+				else if(argv[3][2] != 'x'){ 				//If the hexidecimal isnt a 0x hexidecimal number
+					seconddec = strtol(argv[3],NULL,16);	//do a string to long in base 16
 				}
-				if(proc[1] == 'i'){//If intersect operation
+				if(proc[1] == 'i'){							//If intersect operation
 					result = intersection(firstdec,seconddec);//Place intersection result in result variable
 					printf("The result is %ld!\n",result);
-					printBits(result); //Print result bits
+					printBits(result); 						//Print result bits
 				}
-				else{//-u operation
-					result = bitUnion(firstdec,seconddec);//Find the result of bit union
+				else{										//-u operation
+					result = bitUnion(firstdec,seconddec);	//Find the result of bit union
 					printf("The result of the union is %ld!\n",result);
-					printBits(result); //print bits of the result
+					printBits(result); 						//print bits of the result
 				}
 			}
-			else{ // rotation operation
+			else{ 											// rotation operation
 				int rotateby = strtol(argv[3],NULL,16);//
 				printf("Rotate bits by %d bit positions:\n",rotateby);
 				set rotated = rrotate(firstdec,rotateby);
