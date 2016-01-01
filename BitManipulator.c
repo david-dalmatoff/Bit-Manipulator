@@ -15,8 +15,8 @@ void leftShift(set);
 
 //Global variables
 int c,i,j,k; 	//Loop variables
-set firstdec; 	//First Hexidecimal argument
-set seconddec;	//Second hexidecimal argument
+set firstdec; 	//First hexadecimal argument
+set seconddec;	//Second hexadecimal argument
 set result; 	//Result from operations
 
 int main(int argc, char *argv[]){
@@ -33,11 +33,11 @@ int main(int argc, char *argv[]){
 		
 		if(argc == 3){										//for -p,-c,-s, or -m operations
 			
-			if(argv[2][2] == 'x'){ 							//If the hexidecimal is a 0x hexidecimal number
+			if(argv[2][2] == 'x'){ 							//If the hexadecimal is a 0x hexadecimal number
 				firstdec = strtol(argv[2],NULL,0);			//do a string to long in base 0
 			}
 			
-			else{											//Otherwise if it isnt a 0x hexidecimal
+			else{											//Otherwise if it isn't a 0x hexadecimal
 				firstdec = strtol(argv[2],NULL,16); 		//do a string to Long in base 16
 			}
 			
@@ -48,9 +48,9 @@ int main(int argc, char *argv[]){
 			
 			else if(proc[1] == 'c'){
 				printf("Original   : ");
-				printBits(firstdec);						//Print bits of the first hexidecimal
+				printBits(firstdec);						//Print bits of the first hexadecimal
 				printf("Compelement: ");
-				result = complement(firstdec);				//Get complement bits of the first hexidecimal
+				result = complement(firstdec);				//Get complement bits of the first hexadecimal
 				printBits(result); 							//Print bits of the result
 			}
 			else if(proc[1] == 's'){						//If Find set Bits operation
@@ -66,17 +66,17 @@ int main(int argc, char *argv[]){
 			}
 		}
 		else if(argc == 4){									//for -u, -i, or -r
-			if(argv[2][2] == 'x'){							//If the hexidecimal is a 0x hexidecimal number
+			if(argv[2][2] == 'x'){							//If the hexadecimal is a 0x hexadecimal number
 				firstdec = strtol(argv[2],NULL,0); 			//do a string to long in base 0
 			}
 			else{
 				firstdec = strtol(argv[2],NULL,16);			//do a string to long in base 16
 			}
 			if(proc[1] != 'r'){
-				if(argv[3][2] == 'x'){						//If the hexidecimal is a 0x hexidecimal number
+				if(argv[3][2] == 'x'){						//If the hexadecimal is a 0x hexadecimal number
 					seconddec = strtol(argv[3],NULL,0); 	//do a string to long in base 0
 				}
-				else if(argv[3][2] != 'x'){ 				//If the hexidecimal isnt a 0x hexidecimal number
+				else if(argv[3][2] != 'x'){ 				//If the hexadecimal isn't a 0x hexadecimal number
 					seconddec = strtol(argv[3],NULL,16);	//do a string to long in base 16
 				}
 				if(proc[1] == 'i'){							//If intersect operation
