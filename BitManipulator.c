@@ -1,5 +1,5 @@
-/* Purpose Statement	: Program implements a machine language interpreter for a specified architecture using an outline.
- * Author		: David Dalmatoff
+/* Purpose Statement	: Program that manipulates bit sets. Rotates, shifts, counts, and prints.
+ * Authors		: David Dalmatoff && Jared McDonald
  * File	Name	: BitManipulator.c
  * Date Started	: 10/20/15
  * Date Ended	: 11/03/15
@@ -25,9 +25,9 @@ void leftShift(set);
 
 //Global variables
 int c,i,j,k; 	//Loop variables
-set firstdec; 	//First hexadecimal argument
-set seconddec;	//Second hexadecimal argument
-set result; 	//Result from operations
+set firstdec; 	//stores the first hexadecimal argument from the command line
+set seconddec;	//stores the second hexadecimal argument from the command line
+set result; 	//Result from performed operations
 
 int main(int argc, char *argv[]){
 	if(argc < 2 ||argc > 4){								//If command line has less than 2 or more than 3 arguments
@@ -161,9 +161,10 @@ set rrotate(set a,int num){
 	return (a >> num)|(a << (32 - num));
 }
 
+//function to shift bits to the left; passes through the set of bits you would like to shift
 void leftShift(set a){
 	int setbits = countBits(a);
-	int printedbits = 1;
+	int printedbits = 1;			
 	for(i =0;i < setbits;i++){
 		printf("1");
 		printedbits++;
