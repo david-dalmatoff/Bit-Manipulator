@@ -1,3 +1,13 @@
+/* Purpose Statement	: Program implements a machine language interpreter for a specified architecture using an outline.
+ * Author		: David Dalmatoff
+ * File	Name	: BitManipulator.c
+ * Date Started	: 10/20/15
+ * Date Ended	: 11/03/15
+ */
+
+
+
+
 #include <stdio.h>
 #include <string.h>
 
@@ -49,7 +59,7 @@ int main(int argc, char *argv[]){
 			else if(proc[1] == 'c'){
 				printf("Original   : ");
 				printBits(firstdec);						//Print bits of the first hexadecimal
-				printf("Compelement: ");
+				printf("Complement: ");
 				result = complement(firstdec);				//Get complement bits of the first hexadecimal
 				printBits(result); 							//Print bits of the result
 			}
